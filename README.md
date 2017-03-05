@@ -9,9 +9,11 @@ Test route, returns `Hello world!`
 
 ### `/api/words`
 POST only, accepts two params via form-data
+
 1. `text`: Transcript to parse for keywords.
 2. `keywords`: String list of keywords to parse data
     for, comma separated.
+    
     > e.g. `"uhm, uh, ah"`
 
 ### `/api/sensor`
