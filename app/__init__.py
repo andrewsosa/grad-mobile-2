@@ -23,3 +23,8 @@ def main():
 
     # send back
     return jsonify(occurances)
+
+
+@app.route('/api/')
+def test():
+    return 'Hello, world!'
