@@ -6,7 +6,7 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 
 UPLOAD_FOLDER = 'storage'
-ALLOWED_EXTENSIONS = set(['wav'])
+ALLOWED_EXTENSIONS = set(['wav', 'txt'])
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
