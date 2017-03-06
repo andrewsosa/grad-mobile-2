@@ -97,6 +97,7 @@ def sensor():
     global sensorData
 
     if request.method == 'POST':
+        sensorData = None
         sensorData = request.form.copy()
         return 'OK', 200
     else:
