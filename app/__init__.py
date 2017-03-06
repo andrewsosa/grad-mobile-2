@@ -1,6 +1,6 @@
 import os, thread
 
-from flask import Flask, request, redirect, url_for
+from flask import Flask, request, redirect, url_for, send_from_directory
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
@@ -9,6 +9,7 @@ UPLOAD_FOLDER = 'storage'
 ALLOWED_EXTENSIONS = set(['wav', 'txt'])
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.url_map.strict_slashes = False
 
 #
 #   UTIL
@@ -75,7 +76,7 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('upload_file', filename=filename))
+            return redirect(url_for('uploaded_file', filename=filename))
     return  '''
             <!doctype html>
             <title>Upload new File</title>
@@ -86,6 +87,9 @@ def upload_file():
             </form>
             '''
 
+@app.route('/api/upload/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'],filename)
 
 @app.route('/api/sensor', methods=['GET', 'POST'])
 def sensor():
