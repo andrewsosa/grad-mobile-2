@@ -20,13 +20,11 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-
 #
 #   DATA STORE
 #
 
 sensorData = dict()
-
 
 
 #
